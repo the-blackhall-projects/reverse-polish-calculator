@@ -8,6 +8,10 @@ def process_line(line):
     line = line.upper();
 
     tokens = line.split();
+    if len(tokens) == 1 and tokens[0] == "CLEAR":
+        tokens = []
+        os.system('clear')
+
     return tokens
 
 os.system('clear')
@@ -15,16 +19,18 @@ os.system('clear')
 print("+------------------------------------------+")
 print("|  Internet Reverse Polish Calculator V1.0 |")
 print("+------------------------------------------+")
-print("\nType bye to quit.")
+print("\nType quit to quit.\n")
 
 
 
 # Basic loop for the program
 while True:
     line = input("] ")
-    if line.upper() == "BYE":
+    if line.upper() == "QUIT":
         break
     # Process line
+
+
     print(process_line(line))
 
 
