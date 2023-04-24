@@ -1,3 +1,10 @@
+Live site: https://reverse-polish-calculator.herokuapp.com/
+
+Github repository:
+https://github.com/the-blackhall-projects/reverse-polish-calculator
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome USER_NAME,
