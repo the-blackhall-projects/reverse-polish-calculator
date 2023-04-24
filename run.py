@@ -10,8 +10,10 @@ def process_line(line):
     tokens = line.split();
     return tokens
 
-# Basic loop for the program
 
+ os.system('clear') 
+
+# Basic loop for the program
 while True:
     line = input("] ")
     if line.upper() == "BYE":
