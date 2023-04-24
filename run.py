@@ -10,8 +10,7 @@ def process_line(line):
     tokens = line.split();
     return tokens
 
-
- os.system('clear') 
+os.system('clear') 
 
 # Basic loop for the program
 while True:
