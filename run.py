@@ -10,7 +10,14 @@ def process_line(line):
     tokens = line.split();
     return tokens
 
-os.system('clear') 
+os.system('clear')
+
+print("+------------------------------------------+")
+print("|  Internet Reverse Polish Calculator V1.0 |")
+print("+------------------------------------------+")
+print("\nType bye to quit.")
+
+
 
 # Basic loop for the program
 while True:
