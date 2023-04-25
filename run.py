@@ -111,10 +111,12 @@ print('Type "clear" to clear screen.\n')
 
 
 
+stack = Stack()
+print(stack.show())
+
 
 # Basic loop for the program
 while True:
-    stack = Stack()
     line = input("RPN > ")
     if line.upper() == "QUIT":
         break
