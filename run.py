@@ -8,6 +8,9 @@ class Stack:
 
     data = []
 
+    def reset(self):
+        self.data = []
+
     def push(self, item):
         self.data.append(item)
 
@@ -45,6 +48,8 @@ def process_line(line):
     if len(tokens) == 1 and tokens[0] == "CLEAR":
         os.system('clear')
         return []
+    elif len(tokens) == 1 and tokens[0] == "RESET":
+        stack.reset()
     else:
         for token in tokens:
             if is_num(token):
@@ -65,7 +70,10 @@ os.system('clear')
 print("+------------------------------------------+")
 print("|  Internet Reverse Polish Calculator V1.0 |")
 print("+------------------------------------------+")
-print("\nType quit to quit.\n")
+print('\nType "quit" to quit.\n')
+print('Type "reset" to clear stack.\n')
+print('Type "clear" to clear screen.\n')
+
 
 
 
