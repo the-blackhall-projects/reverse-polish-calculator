@@ -11,7 +11,7 @@ class Stack:
     def push(self, item):
         self.data.append(item)
 
-    def pop(self, item):
+    def pop(self):
         return self.data.pop()
     
     def top(self):
@@ -49,6 +49,14 @@ def process_line(line):
         for token in tokens:
             if is_num(token):
                 stack.push(token)
+            elif is_operator(token):
+                if token == '+':
+                    stack.push( float(stack.pop()) + float(stack.pop()))
+                if token == '-':
+                    stack.push( -float(stack.pop()) + float(stack.pop()))
+
+
+    
 
     return stack
 
