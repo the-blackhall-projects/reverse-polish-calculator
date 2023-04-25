@@ -4,29 +4,29 @@ import math;
 
 class Stack:
 
-    data = []
+    __data = []
 
     def length(self):
-        return len(self.data)
+        return len(self.__data)
 
     def reset(self):
-        self.data.clear()
+        self.__data.clear()
 
     def push(self, item):
-            self.data.append(item)
+            self.__data.append(item)
 
     def pop(self):
-        return self.data.pop()
+        return self.__data.pop()
     
     def top(self):
-        return self.data[-1]
+        return self.__data[-1]
     
     def peek(self, index):
-        return self.data[-1 - index]
+        return self.__data[-1 - index]
     
     def show(self):
         retVal = ""
-        for element in self.data:
+        for element in self.__data:
             if is_num(element):
                 num = float(element)
                 if num == int(num):
