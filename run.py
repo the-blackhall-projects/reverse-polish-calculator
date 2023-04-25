@@ -22,6 +22,27 @@ class Stack:
     
     def peek(self, index):
         return self.data[-1 - index]
+    
+    def show(self):
+        retVal = ""
+        for element in self.data:
+            if is_num(element):
+                num = float(element)
+                if num == int(num):
+                    retVal += " " + str(int(num))
+                else:
+                    retVal += " " + str(num)
+            else:
+                retVal += " " + element
+
+        retVal = retVal.strip()
+
+        if len(retVal) == 0:
+            retVal = "(empty)"
+
+        return "Stack: " + retVal
+
+            
 
         
 
@@ -38,6 +59,10 @@ def is_num(str):
 
 def is_operator(str):
     return str in {'+', '-', '*', '/', '^'}
+
+
+
+
     
 def process_line(stack, line):
 
@@ -55,7 +80,7 @@ def process_line(stack, line):
                 stack.push(token)
             elif is_operator(token):
                 if stack.length() < 2:
-                    print("Stack to small for operation - minimum two elements required")
+                    print("Stack to small for operation - minimum two elements required for", token)
                     return stack
                 elif not is_num(stack.peek(1)) or not is_num(stack.peek(0)):
                     print("Two top-most elements in stack must be numeric for operation")
@@ -71,6 +96,7 @@ def process_line(stack, line):
                     stack.push(str(num1 * num2))
                 elif token == '/':
                     stack.push(str(num1 / num2))
+            
 
     return stack
 
@@ -89,12 +115,12 @@ print('Type "clear" to clear screen.\n')
 # Basic loop for the program
 while True:
     stack = Stack()
-    line = input("RPN> ")
+    line = input("RPN > ")
     if line.upper() == "QUIT":
         break
     # Process line
-    stack = process_line(stack, line).data
-    print(stack)
+    process_line(stack, line)
+    print(stack.show())
 
 
 
