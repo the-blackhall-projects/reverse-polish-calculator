@@ -1,6 +1,3 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import os;
 
@@ -8,11 +5,14 @@ class Stack:
 
     data = []
 
+    def length(self):
+        return len(self.data)
+
     def reset(self):
-        self.data = []
+        self.data.clear()
 
     def push(self, item):
-        self.data.append(item)
+            self.data.append(item)
 
     def pop(self):
         return self.data.pop()
@@ -22,6 +22,7 @@ class Stack:
     
     def peek(self, index):
         return self.data[-1 - index]
+
         
 
 def is_num(str):
@@ -38,9 +39,8 @@ def is_num(str):
 def is_operator(str):
     return str in {'+', '-', '*', '/', '^'}
     
-def process_line(line):
+def process_line(stack, line):
 
-    stack = Stack()
 
     line = line.upper();
 
@@ -54,6 +54,13 @@ def process_line(line):
             if is_num(token):
                 stack.push(token)
             elif is_operator(token):
+                if stack.length() < 2:
+                    print("Stack to small for operation - minimum two elements required")
+                    return stack
+                elif not is_num(stack.peek(1)) or not is_num(stack.peek(0)):
+                    print("Two top-most elements in stack must be numeric for operation")
+                    return stack
+                
                 num2 = float(stack.pop())
                 num1 = float(stack.pop())
                 if token == '+':
@@ -81,16 +88,14 @@ print('Type "clear" to clear screen.\n')
 
 # Basic loop for the program
 while True:
+    stack = Stack()
     line = input("] ")
     if line.upper() == "QUIT":
         break
     # Process line
-
-
-    print(process_line(line).data)
+    stack = process_line(stack, line).data
+    print(stack)
 
 
 
 print("Goodbye!")
-
-
