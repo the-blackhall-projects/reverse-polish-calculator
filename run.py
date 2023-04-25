@@ -32,9 +32,9 @@ def is_num(str):
 
     return retVal
 
-
-
-
+def is_operator(str):
+    return str in {'+', '-', '*', '/', '^'}
+    
 def process_line(line):
 
     stack = Stack()
