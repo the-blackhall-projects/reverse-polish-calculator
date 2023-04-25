@@ -83,10 +83,10 @@ def process_line(stack, line):
             elif is_operator(token):
                 if stack.length() < 2:
                     print("Stack to small for operation - minimum two operands required for", token)
-                    return stack
+                    return
                 elif not is_num(stack.peek(1)) or not is_num(stack.peek(0)):
                     print("Two top-most elements in stack must be numeric for operation", token)
-                    return stack
+                    return
                 
                 num2 = float(stack.pop())
                 num1 = float(stack.pop())
@@ -101,10 +101,10 @@ def process_line(stack, line):
             elif is_function(token):
                 if stack.length() < 1:
                     print("Stack to small for operation - minimum one parameter required for", token)
-                    return stack
+                    return
                 elif not is_num(stack.peek(0)):
                     print("Top-most element in stack must be numeric for", token)
-                    return stack
+                    return
 
                 num = float(stack.pop())
                 if token == "SIN":
@@ -115,12 +115,7 @@ def process_line(stack, line):
                     stack.push(str(math.tan(num)))
             else:
                 print("Token",token,"not recognised.")
-                    
-
-
-
-            
-    return stack
+    return
 
 os.system('clear')
 
