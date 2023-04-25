@@ -47,7 +47,6 @@ def process_line(line):
     tokens = line.split();
     if len(tokens) == 1 and tokens[0] == "CLEAR":
         os.system('clear')
-        return []
     elif len(tokens) == 1 and tokens[0] == "RESET":
         stack.reset()
     else:
@@ -55,13 +54,16 @@ def process_line(line):
             if is_num(token):
                 stack.push(token)
             elif is_operator(token):
+                num2 = float(stack.pop())
+                num1 = float(stack.pop())
                 if token == '+':
-                    stack.push( float(stack.pop()) + float(stack.pop()))
-                if token == '-':
-                    stack.push( -float(stack.pop()) + float(stack.pop()))
-
-
-    
+                    stack.push( num1 + num2)
+                elif token == '-':
+                    stack.push(num1 - num2)
+                elif token == '*':
+                    stack.push(num1 * num2)
+                elif token == '/':
+                    stack.push( num1 / num2)
 
     return stack
 
