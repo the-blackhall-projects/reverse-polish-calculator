@@ -1,5 +1,6 @@
 
 import os;
+import math;
 
 class Stack:
 
@@ -60,6 +61,9 @@ def is_num(str):
 def is_operator(str):
     return str in {'+', '-', '*', '/', '^'}
 
+def is_function(str):
+    return str in {"SIN", "COS", "TAN"}
+
 
 
 
@@ -96,8 +100,21 @@ def process_line(stack, line):
                     stack.push(str(num1 * num2))
                 elif token == '/':
                     stack.push(str(num1 / num2))
-            
+            elif is_function(token):
+                num = float(stack.pop())
+                if token == "SIN":
+                    stack.push(str(math.sin(num)))
+                elif token == "COS":
+                    stack.push(str(math.cos(num)))
+                elif token == "TAN":
+                    stack.push(str(math.tan(num)))
+            else:
+                print("Token",token,"not recognised.")
+                    
 
+
+
+            
     return stack
 
 os.system('clear')
