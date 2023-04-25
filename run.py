@@ -64,13 +64,13 @@ def process_line(stack, line):
                 num2 = float(stack.pop())
                 num1 = float(stack.pop())
                 if token == '+':
-                    stack.push( num1 + num2)
+                    stack.push(str(num1 + num2))
                 elif token == '-':
-                    stack.push(num1 - num2)
+                    stack.push(str(num1 - num2))
                 elif token == '*':
-                    stack.push(num1 * num2)
+                    stack.push(str(num1 * num2))
                 elif token == '/':
-                    stack.push( num1 / num2)
+                    stack.push(str(num1 / num2))
 
     return stack
 
@@ -89,7 +89,7 @@ print('Type "clear" to clear screen.\n')
 # Basic loop for the program
 while True:
     stack = Stack()
-    line = input("] ")
+    line = input("RPN> ")
     if line.upper() == "QUIT":
         break
     # Process line
