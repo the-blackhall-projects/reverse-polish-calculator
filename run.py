@@ -4,15 +4,53 @@
 
 import os;
 
+class Stack:
+
+    data = []
+
+    def push(self, item):
+        self.data.append(item)
+
+    def pop(self, item):
+        return self.data.pop()
+    
+    def top(self):
+        return self.data[-1]
+    
+    def peek(self, index):
+        return self.data[-1 - index]
+        
+
+def is_num(str):
+    #If you expect None to be passed:
+    retVal = True
+    
+    try:
+        float(str)
+    except ValueError:
+        retVal = False
+
+    return retVal
+
+
+
+
 def process_line(line):
+
+    stack = Stack()
+
     line = line.upper();
 
     tokens = line.split();
     if len(tokens) == 1 and tokens[0] == "CLEAR":
-        tokens = []
         os.system('clear')
+        return []
+    else:
+        for token in tokens:
+            if is_num(token):
+                stack.push(token)
 
-    return tokens
+    return stack
 
 os.system('clear')
 
@@ -31,7 +69,7 @@ while True:
     # Process line
 
 
-    print(process_line(line))
+    print(process_line(line).data)
 
 
 
