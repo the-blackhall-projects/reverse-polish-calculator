@@ -98,6 +98,8 @@ def process_line(stack, line):
                     stack.push(str(num1 * num2))
                 elif token == '/':
                     stack.push(str(num1 / num2))
+                elif token == '^':
+                    stack.push(str(num1 ** num2))
             elif is_function(token):
                 if stack.length() < 1:
                     print("Stack to small for operation - minimum one parameter required for", token)
@@ -135,7 +137,7 @@ print(stack.show())
 # Basic loop for the program
 while True:
     line = input("RPN > ")
-    if line.upper() == "QUIT":
+    if line.upper() in {"QUIT", "EXIT"}:
         break
     # Process line
     process_line(stack, line)
