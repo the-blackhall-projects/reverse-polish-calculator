@@ -57,7 +57,7 @@ def is_num(str):
     return retVal
 
 def is_operator(str):
-    return str in {'+', '-', '*', '/', '^'}
+    return str in {'+', '-', '*', '/', '^', 'MOD'}
 
 def is_function(str):
     return str in {"SIN", "COS", "TAN", "ABS", "ATN", "COT", "EXP", "INT", "LOG", "SQR", "SGN"}
@@ -107,6 +107,9 @@ def process_line(stack, line):
                     stack.push(str(num1 / num2))
                 elif token == '^':
                     stack.push(str(num1 ** num2))
+                elif token == 'MOD':
+                    stack.push(str(num1 % num2))
+            
             elif is_function(token):
                 if stack.length() < 1:
                     print("Stack to small for operation - minimum one parameter required for", token)
