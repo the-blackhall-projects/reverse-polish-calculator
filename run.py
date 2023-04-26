@@ -135,7 +135,7 @@ def process_line(stack, line):
                 elif token == "LOG":
                     stack.push(str(math.log(num)))                   
                 elif token == "SQR":
-                    stack.push(str(sqrt(num)))
+                    stack.push(str(math.sqrt(num)))
                 elif token == "SGN":
                     stack.push(str(sign(num)))
             elif is_no_arg_function(token):
