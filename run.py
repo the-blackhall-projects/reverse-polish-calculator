@@ -28,14 +28,10 @@ class Stack:
     def show(self):
         retVal = ""
         for element in self.__data:
-            if is_num(element):
-                num = float(element)
-                if num == int(num):
-                    retVal += " " + str(int(num))
-                else:
-                    retVal += " " + str(num)
+            if num == int(num):
+                retVal += " " + str(int(num))
             else:
-                retVal += " " + element
+                retVal += " " + str(num)
 
         retVal = retVal.strip()
 
@@ -86,64 +82,56 @@ def process_line(stack, line):
     else:
         for token in tokens:
             if is_num(token):
-                stack.push(token)
+                stack.push(float(token))
             elif is_operator(token):
                 if stack.length() < 2:
                     print("Stack to small for operation - minimum two operands required for", token)
                     return
-                elif not is_num(stack.peek(1)) or not is_num(stack.peek(0)):
-                    print("Two top-most elements in stack must be numeric for operation", token)
-                    return
-                
-                num2 = float(stack.pop())
-                num1 = float(stack.pop())
+                num2 = stack.pop()
+                num1 = stack.pop()
                 if token == '+':
-                    stack.push(str(num1 + num2))
+                    stack.push(num1 + num2)
                 elif token == '-':
-                    stack.push(str(num1 - num2))
+                    stack.push(num1 - num2)
                 elif token == '*':
-                    stack.push(str(num1 * num2))
+                    stack.push(num1 * num2)
                 elif token == '/':
-                    stack.push(str(num1 / num2))
+                    stack.push(num1 / num2)
                 elif token == '^':
-                    stack.push(str(num1 ** num2))
+                    stack.push(num1 ** num2)
                 elif token == 'MOD':
-                    stack.push(str(num1 % num2))
+                    stack.push(num1 % num2)
             
             elif is_function(token):
                 if stack.length() < 1:
                     print("Stack to small for operation - minimum one parameter required for", token)
                     return
-                elif not is_num(stack.peek(0)):
-                    print("Top-most element in stack must be numeric for", token)
-                    return
-
-                num = float(stack.pop())
+                num = stack.pop()
                 if token == "SIN":
-                    stack.push(str(math.sin(num)))
+                    stack.push(math.sin(num))
                 elif token == "COS":
-                    stack.push(str(math.cos(num)))
+                    stack.push(math.cos(num))
                 elif token == "TAN":
-                    stack.push(str(math.tan(num)))
+                    stack.push(math.tan(num))
                 elif token == "ABS":
-                    stack.push(str(abs(num)))
+                    stack.push(abs(num))
                 elif token == "INT":
-                    stack.push(str(int(num)))
+                    stack.push(int(num))
                 elif token == "ATN":
-                    stack.push(str(math.atan(num)))
+                    stack.push(math.atan(num))
                 elif token == "COT":
-                    stack.push(str(1/math.atan(num)))
+                    stack.push(1/math.atan(num))
                 elif token == "EXP":
-                    stack.push(str(EXP(num)))
+                    stack.push(math.exp(num))
                 elif token == "LOG":
-                    stack.push(str(math.log(num)))                   
+                    stack.push(math.log(num))                   
                 elif token == "SQR":
-                    stack.push(str(math.sqrt(num)))
+                    stack.push(math.sqrt(num))
                 elif token == "SGN":
-                    stack.push(str(sign(num)))
+                    stack.push(sign(num))
             elif is_no_arg_function(token):
                 if token == "RND":
-                    stack.push(str(random.random()))
+                    stack.push(random.random())
             else:
                 print("Token",token,"not recognised.")
     return
@@ -153,7 +141,7 @@ os.system('clear')
 print("+------------------------------------------+")
 print("|  Internet Reverse Polish Calculator V1.0 |")
 print("+------------------------------------------+")
-print('\nType "quit" to quit.\n')
+print('\nType "quit" or "exit" to quit.\n')
 print('Type "reset" to clear stack.\n')
 print('Type "clear" to clear screen.\n')
 
