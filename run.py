@@ -19,8 +19,6 @@ class Stack:
     def pop(self):
         return self.__data.pop()
     
-    def top(self):
-        return self.__data[-1]
    
     def show(self):
         retVal = ""
@@ -179,6 +177,7 @@ while True:
     if line.upper() in {"QUIT", "EXIT"}:
         break
     # Process line
+    
     process_line(stack, line)
     print(stack.show())
 
