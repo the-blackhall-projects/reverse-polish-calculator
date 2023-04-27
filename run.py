@@ -21,13 +21,11 @@ class Stack:
     
     def top(self):
         return self.__data[-1]
-    
-    def peek(self, index):
-        return self.__data[-1 - index]
-    
+  
+   
     def show(self):
         retVal = ""
-        for element in self.__data:
+        for num in self.__data:
             if num == int(num):
                 retVal += " " + str(int(num))
             else:
