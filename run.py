@@ -2,10 +2,19 @@
 import os
 import math
 import random
+import copy
 
 class Stack:
 
     __data = []
+
+
+    def __init__(self, initStack = []):
+         self.__data = initStack
+
+
+    def getData():
+        return self.__data
 
     def length(self):
         return len(self.__data)
@@ -18,7 +27,6 @@ class Stack:
 
     def pop(self):
         return self.__data.pop()
-    
    
     def show(self):
         retVal = ""
@@ -153,7 +161,7 @@ def process_line(stack, line):
                     if process_operator(token, num1, num2):
                         break
                     else:
-                        print("Token not recognized:", token)
+                        raise Exception("Token not recognised: "+token) 
     return
 
 os.system('clear')
@@ -177,10 +185,14 @@ while True:
     if line.upper() in {"QUIT", "EXIT"}:
         break
     # Process line
-    
-    process_line(stack, line)
+    stackSave = copy.deepcopy(stack)
+
+    try:
+        process_line(stack, line)
+    except Exception as err:
+        print("an error occurred")
+        stack = stackSave
+
     print(stack.show())
-
-
 
 print("Goodbye!")
