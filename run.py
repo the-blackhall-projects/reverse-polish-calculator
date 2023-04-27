@@ -21,7 +21,6 @@ class Stack:
     
     def top(self):
         return self.__data[-1]
-  
    
     def show(self):
         retVal = ""
@@ -67,6 +66,61 @@ def sign(num):
         return 1
     else:
         return 0
+
+def process_no_arg_function(token):
+    if token == "RND":
+        stack.push(random.random())
+    else:
+        return False
+    
+    return True
+
+def process_function(token, num):
+    if token == "SIN":
+        stack.push(math.sin(num))
+    elif token == "COS":
+        stack.push(math.cos(num))
+    elif token == "TAN":
+        stack.push(math.tan(num))
+    elif token == "ABS":
+        stack.push(abs(num))
+    elif token == "INT":
+        stack.push(int(num))
+    elif token == "ATN":
+        stack.push(math.atan(num))
+    elif token == "COT":
+        stack.push(1/math.atan(num))
+    elif token == "EXP":
+        stack.push(math.exp(num))
+    elif token == "LOG":
+        stack.push(math.log(num))               
+    elif token == "SQR":
+        stack.push(math.sqrt(num))
+    elif token == "SGN":
+        stack.push(sign(num))
+    else:
+        return False
+    
+    return True
+
+
+def process_operator(token, num1, num2):
+    if token == '+':
+        stack.push(num1 + num2)
+    elif token == '-':
+        stack.push(num1 - num2)
+    elif token == '*':
+        stack.push(num1 * num2)
+    elif token == '/':
+        stack.push(num1 / num2)
+    elif token == '^':
+        stack.push(num1 ** num2)
+    elif token == 'MOD':
+        stack.push(num1 % num2)
+    else:
+        return False
+    
+    return True
     
 def process_line(stack, line):
 
@@ -79,59 +133,29 @@ def process_line(stack, line):
         stack.reset()
     else:
         for token in tokens:
+
             if is_num(token):
                 stack.push(float(token))
-            elif is_operator(token):
-                if stack.length() < 2:
-                    print("Stack to small for operation - minimum two operands required for", token)
-                    return
-                num2 = stack.pop()
-                num1 = stack.pop()
-                if token == '+':
-                    stack.push(num1 + num2)
-                elif token == '-':
-                    stack.push(num1 - num2)
-                elif token == '*':
-                    stack.push(num1 * num2)
-                elif token == '/':
-                    stack.push(num1 / num2)
-                elif token == '^':
-                    stack.push(num1 ** num2)
-                elif token == 'MOD':
-                    stack.push(num1 % num2)
-            
-            elif is_function(token):
-                if stack.length() < 1:
-                    print("Stack to small for operation - minimum one parameter required for", token)
-                    return
-                num = stack.pop()
-                if token == "SIN":
-                    stack.push(math.sin(num))
-                elif token == "COS":
-                    stack.push(math.cos(num))
-                elif token == "TAN":
-                    stack.push(math.tan(num))
-                elif token == "ABS":
-                    stack.push(abs(num))
-                elif token == "INT":
-                    stack.push(int(num))
-                elif token == "ATN":
-                    stack.push(math.atan(num))
-                elif token == "COT":
-                    stack.push(1/math.atan(num))
-                elif token == "EXP":
-                    stack.push(math.exp(num))
-                elif token == "LOG":
-                    stack.push(math.log(num))                   
-                elif token == "SQR":
-                    stack.push(math.sqrt(num))
-                elif token == "SGN":
-                    stack.push(sign(num))
-            elif is_no_arg_function(token):
-                if token == "RND":
-                    stack.push(random.random())
+            elif process_no_arg_function(token):
+                break
             else:
-                print("Token",token,"not recognised.")
+                if stack.length() < 1:
+                    print("Stack to short. One argument required for", token)
+                    break
+
+                num2 = stack.pop()
+                if process_function(token, num2):
+                    break
+                else:
+                    if stack.length() < 1:
+                        print("Stack to short. Two operands required for", token)
+                        break
+
+                    num1 = stack.pop()
+                    if process_operator(token, num1, num2):
+                        break
+                    else:
+                        print("Token not recognized:", token)
     return
 
 os.system('clear')
