@@ -3,13 +3,12 @@ import os
 import math
 import random
 
+
 class Stack:
-    """
-    Implement a stack object using a list as the data.
-    """
+    """ Implement a stack object using a list as the data."""
     __data = []
 
-    def __init__(self, init_stack = []):
+    def __init__(self, init_stack=[]):
         """
          Constructor.  Create the object.
 
@@ -20,7 +19,7 @@ class Stack:
             initial stack.  Defaults to the empty list
          """
         self.__data = init_stack
-    
+
     def length(self):
         """
         Get length of stack.
@@ -57,7 +56,7 @@ class Stack:
         float: the item popped from the stack.
         """
         return self.__data.pop()
-   
+
     def show(self):
         """
         Return a string representing the stack for use
@@ -82,6 +81,7 @@ class Stack:
 
         return "Stack: " + ret_val
 
+
 def is_num(strng):
     """
     Test if string passed represents a valid number.
@@ -93,17 +93,18 @@ def is_num(strng):
 
     Returns
     -------
-        boolean : True if the passed string represents 
+        boolean : True if the passed string represents
         a valid number.
     """
     ret_val = True
-    
+
     try:
         float(strng)
     except ValueError:
         ret_val = False
 
     return ret_val
+
 
 def is_operator(strng):
     """
@@ -120,6 +121,7 @@ def is_operator(strng):
     """
     return strng in {'+', '-', '*', '/', '^', 'MOD'}
 
+
 def is_function(strng):
     """
     Test if passed string represents a function
@@ -133,7 +135,8 @@ def is_function(strng):
     -------
     boolean : True if string represents a valid function
     """
-    return strng in {"SIN", "COS", "TAN", "ABS", "ATN", "COT", "EXP", "INT", "LOG", "SQR", "SGN", "NEG", "INV"}
+    return strng in {"SIN", "COS", "TAN", "ABS", "ATN", "COT", "EXP",
+                     "INT", "LOG", "SQR", "SGN", "NEG", "INV"}
 
 
 def is_no_arg_function(strng):
@@ -151,6 +154,7 @@ def is_no_arg_function(strng):
     """
     return strng in {"RND", "POP", "SWP", "PI"}
 
+
 def sign(num):
     """
     Return the sign of a number
@@ -164,7 +168,6 @@ def sign(num):
     -------
     float : the sign of the number.  -1 if negative,
         1 if positive and 0 if zero.
-    
     """
     if num < 0:
         return -1
@@ -172,6 +175,7 @@ def sign(num):
         return 1
     else:
         return 0
+
 
 def process_no_arg_function(stack, token):
     """
@@ -197,16 +201,19 @@ def process_no_arg_function(stack, token):
         stack.push(math.pi)
     elif token == "POP":
         if stack.length() < 1:
-            raise ArithmeticError(token+' requires at least one item in the stack.')
+            raise ArithmeticError(token + " requires at least one item" +
+                                  ' in the stack.')
         stack.pop()
     elif token == "SWP":
         if stack.length() < 2:
-            raise ArithmeticError(token+" requires at leaat two items in the stack.")
+            raise ArithmeticError(token+" requires at leaat two items" +
+                                  " in the stack.")
         num2 = stack.pop()
         num1 = stack.pop()
         stack.push(num2)
         stack.push(num1)
     return
+
 
 def process_function(stack, token):
     """
@@ -223,8 +230,6 @@ def process_function(stack, token):
     """
     if stack.length() < 1:
         raise ArithmeticError('Function '+token+' requires one argument.')
-        return
-    
     num = stack.pop()
     try:
         if token == "SIN":
@@ -239,9 +244,10 @@ def process_function(stack, token):
             stack.push(int(num))
         elif token == "ATN":
             stack.push(math.atan(num))
-        elif token == "COT": # Cotangent
+        elif token == "COT":
             if math.atan(num) == 0:
-                raise ZeroDivisionError("COT is not defined for " + str(num)+".")
+                raise ZeroDivisionError("COT is not defined for "
+                                        + str(num)+".")
             stack.push(1/math.tan(num))
         elif token == "EXP":
             stack.push(math.exp(num))
@@ -259,13 +265,14 @@ def process_function(stack, token):
             stack.push(-num)
         elif token == "INV":
             stack.push(1/num)
-    except (ValueError, ZeroDivisionError) :
+    except (ValueError, ZeroDivisionError):
         stack.push(num)
         raise
     except OverflowError as err:
         stack.push(num)
         raise OverflowError("Number exceeded maximum allowed size.") from err
     return
+
 
 def process_operator(stack, token):
     """
@@ -300,7 +307,8 @@ def process_operator(stack, token):
             stack.push(num1 ** num2)
         elif token == 'MOD':
             if num2 == 0:
-                raise ZeroDivisionError('Operator MOD: tried to obtain modulus of division by zero.')
+                raise ZeroDivisionError('Operator MOD: tried to obtain" \
+                                        " modulus of division by zero.')
             stack.push(num1 % num2)
     except ZeroDivisionError:
         stack.push(num1)
@@ -311,7 +319,8 @@ def process_operator(stack, token):
         stack.push(num2)
         raise OverflowError("Number exceeded maximum allowed size.") from err
     return
-    
+
+
 def process_line(stack, line):
     """
     Process a line entered by the user.
@@ -349,7 +358,8 @@ def process_line(stack, line):
                     process_operator(stack, token)
                 else:
                     raise NameError(token + " not found.")
-        except (ZeroDivisionError, ValueError, OverflowError, ArithmeticError, NameError)  as err:
+        except (ZeroDivisionError, ValueError, OverflowError,
+                ArithmeticError, NameError) as err:
             if i < len(tokens) - 1:
                 rest_message = "Rest of input line ignored."
             else:
@@ -357,6 +367,7 @@ def process_line(stack, line):
             ret_message = str(err) + " " + rest_message
 
     return ret_message.strip()
+
 
 def main():
     """
@@ -371,14 +382,13 @@ def main():
 
 COMMANDS (to be typed on their own line):
 
-"quit" or "exit" to quit program.  
+"quit" or "exit" to quit program.
 "reset" to empty the stack.
 "clear" to clear screen.
 ''')
 
     stack = Stack()
     print(stack.show())
-
 
     # Basic loop for the program
     while True:
@@ -388,13 +398,15 @@ COMMANDS (to be typed on their own line):
         # Process line
         ret_message = process_line(stack, line)
 
+        # Print message if one returned from process_line
         if ret_message != "":
             print(ret_message)
-        
+
         # Display the stack
         print(stack.show())
 
     print("Goodbye!")
+
 
 if __name__ == "__main__":
     main()
