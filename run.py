@@ -3,70 +3,186 @@ import os
 import math
 import random
 
-class Stack:
 
-    # Private member variable containing 
-    # data for the stack.
+class Stack:
+    """
+    Implement a stack object using a list as the data.
+    """
     __data = []
 
 
-    def __init__(self, initStack = []):
-         self.__data = initStack
+    def __init__(self, init_stack = []):
+         """
+         Constructor.  Create the object.
 
+         Parameters
+         ----------
+         init_stack : list. Optional
+            Alist supplied to constitute
+            initial stack.  Defaults to the empty list
+         """
+         self.__data = init_stack
 
     def getData(self):
+        """
+        Get contents of stack as a list.
+
+        Returns
+        -------
+        list - the list representing the stack.
+        """
         return self.__data
 
     def length(self):
+        """
+        Get length of stack.
+
+        Returns
+        -------
+        int : the number of items in the stack.
+        """
+
         return len(self.__data)
 
     def reset(self):
+        """
+            Clear the list of all items.
+        """
         self.__data.clear()
 
     def push(self, item):
-            self.__data.append(item)
+        """
+        Pushes an item ont the stack.
+
+        Parameters
+        ----------
+        item: float
+            The item to be pushed onto the stack.
+
+        """
+        self.__data.append(item)
 
     def pop(self):
+        """
+        Pup an item from the stack.
+
+        Returns
+        -------
+        float: the item popped from the stack.
+        """
         return self.__data.pop()
    
     def show(self):
-        retVal = ""
+        """
+        Return a string representing the stack for use
+        in the program output.  Prefix output with "Stack:"
+        and have "(empty)" if stack is empty.
+
+        Returns
+        -------
+            string : a printable representation of the stack.
+
+        """
+        ret_val = ""
         for num in self.__data:
             if num == int(num):
-                retVal += " " + str(int(num))
+                ret_val += " " + str(int(num))
             else:
-                retVal += " " + str(num)
+                ret_val += " " + str(num)
 
-        retVal = retVal.strip()
+        retVal = ret_val.strip()
 
-        if len(retVal) == 0:
-            retVal = "(empty)"
+        if len(ret_val) == 0:
+            ret_val = "(empty)"
 
-        return "Stack: " + retVal
+        return "Stack: " + ret_val
 
 
-def is_num(str):
-    #If you expect None to be passed:
-    retVal = True
+def is_num(strng):
+    """
+    Test if string passed represents a valid number.
+
+    Parameters
+    ----------
+    strng : string
+        The string containing the number to be tested.
+
+    Returns
+    -------
+        boolean : True if the passed string represents 
+        a valid number.
+    """
+    ret_val = True
     
     try:
-        float(str)
+        float(strng)
     except ValueError:
-        retVal = False
+        ret_val = False
 
-    return retVal
+    return ret_val
 
-def is_operator(str):
-    return str in {'+', '-', '*', '/', '^', 'MOD'}
+def is_operator(strng):
+    """
+    Test if passed string represents an arithmetic operator.
 
-def is_function(str):
-    return str in {"SIN", "COS", "TAN", "ABS", "ATN", "COT", "EXP", "INT", "LOG", "SQR", "SGN", "NEG", "INV"}
+    Parameters
+    ----------
+    strng : string
+        String to be tested
+
+    Returns
+    -------
+    boolean : True if string represents a valid operator
+
+    """
+    return strng in {'+', '-', '*', '/', '^', 'MOD'}
+
+def is_function(strng):
+    """
+    Test if passed string represents a function
+
+    Parameters
+    ----------
+    strng : string
+        String to be tested
+
+    Returns
+    -------
+    boolean : True if string represents a valid function
+    """
+    return strng in {"SIN", "COS", "TAN", "ABS", "ATN", "COT", "EXP", "INT", "LOG", "SQR", "SGN", "NEG", "INV"}
 
 
-def is_no_arg_function(str):
-    return str in {"RND", "POP", "SWP", "PI"}
+def is_no_arg_function(strng):
+    """
+    Test if passed string represents a function that takes no argument
+
+    Parameters
+    ----------
+    strng : string
+        String to be tested
+
+    Returns
+    -------
+    boolean : True if string represents a valid function that takes no argument
+    """
+    return strng in {"RND", "POP", "SWP", "PI"}
 
 def sign(num):
+    """
+    Return the sign of a number
+
+    Parameters
+    ----------
+    float : num
+    The number who's sign is to be determined
+
+    Returns
+    -------
+    float : the sign of the number.  -1 if negative,
+        1 if positive and 0 if zero.
+    
+    """
     if num < 0:
         return -1
     elif num > 0:
@@ -75,6 +191,23 @@ def sign(num):
         return 0
 
 def process_no_arg_function(stack, token):
+    """
+    Process no argument function. Push the calculated value
+    onto the stack or carry out required operation.
+
+    Parameters
+    ----------
+    stack : object
+    The stack on which to perform operation
+
+    token : string
+    A string representing the function.
+
+    Note
+    ----
+    Some of these operations require some elements in the stack,
+    however these elements are not used as arguments to the functions.
+    """
     if token == "RND":
         stack.push(random.random())
     if token == "PI":
@@ -88,15 +221,23 @@ def process_no_arg_function(stack, token):
             raise ArithmeticError(token+" requires at leaat two items in the stack.")
         num2 = stack.pop()
         num1 = stack.pop()
-        stack.push(num1)
         stack.push(num2)
-    else:
-        return False
-    
-    return True
+        stack.push(num1)
+    return
 
 def process_function(stack, token):
+    """
+    Process standard function and push the calculated value
+    onto the stack.
 
+    Parameters
+    ----------
+    stack : object
+    The stack on which to perform operation
+
+    token : string
+    A string representing the function
+    """
     if stack.length() < 1:
         raise ArithmeticError('Function '+token+' requires one argument.')
         return
@@ -115,7 +256,7 @@ def process_function(stack, token):
             stack.push(int(num))
         elif token == "ATN":
             stack.push(math.atan(num))
-        elif token == "COT":
+        elif token == "COT": # Cotangent
             if math.atan(num) == 0:
                 raise ZeroDivisionError("COT is not defined for " + str(num)+".")
             stack.push(1/math.tan(num))
@@ -124,7 +265,7 @@ def process_function(stack, token):
         elif token == "LOG":
             if num <= 0:
                 raise ValueError("LOG can't take zero or negative number.")
-            stack.push(math.log(num))               
+            stack.push(math.log(num))
         elif token == "SQR":
             if num < 0:
                 raise ValueError("SQR can't take negative number.")
@@ -138,17 +279,25 @@ def process_function(stack, token):
     except (ValueError, ZeroDivisionError) :
         stack.push(num)
         raise
-    except OverflowError:
+    except OverflowError as err:
         stack.push(num)
-        raise OverflowError("Number exceeded maximum allowed size.")
-    else:
-        return
-        
+        raise OverflowError("Number exceeded maximum allowed size.") from err
     
-
+    return
 
 def process_operator(stack, token):
+    """
+    Process the suppied operator and push the calculated value
+    onto the stack.
 
+    Parameters
+    ----------
+    stack : object
+    The stack on which to perform operation
+
+    token : string
+    A string representing the operator
+    """
     if stack.length() < 2:
         raise ArithmeticError('Operator '+token+' requires two operands.')
 
@@ -177,12 +326,21 @@ def process_operator(stack, token):
         stack.push(num1)
         stack.push(num2)
         raise OverflowError("Number exceeded maximum allowed size.")
-        raise 
-    else:
-        return
+         
+    return
     
 def process_line(stack, line):
+    """
+    Process a line entered by the user.
 
+    Parameters
+    ----------
+    stack : object
+    The stack on which to perform operation
+
+    line : string
+    A string entered by the user.
+    """
     line = line.upper()
 
     i = 0
@@ -217,29 +375,43 @@ def process_line(stack, line):
     
     return
 
-os.system('clear')
 
-print('''+------------------------------------------+"
-|  Internet Reverse Polish Calculator V1.0 |")
-+------------------------------------------+")
+
+
+
+def main():
+    """
+    Main loop of the program.  Set up stack.  Read line from user.
+    Process line.  Display new stack as output.
+    """
+    os.system('clear')
+
+    print('''+-------------------------------------------+"
+|  Internet Reverse Polish Calculator V 1.0 |"
++-------------------------------------------+"
+
 COMMANDS (to be typed on their own line):
+
 "quit" or "exit" to quit program.  
 "reset" to empty the stack.
 "clear" to clear screen.
 ''')
 
-stack = Stack()
-print(stack.show())
-
-
-# Basic loop for the program
-while True:
-    line = input("RPN > ")
-    if line.upper() in {"QUIT", "EXIT"}:
-        break
-    # Process line
-    process_line(stack, line)
-    
+    stack = Stack()
     print(stack.show())
 
-print("Goodbye!")
+
+    # Basic loop for the program
+    while True:
+        line = input("RPN > ")
+        if line.upper() in {"QUIT", "EXIT"}:
+            break
+        # Process line
+        process_line(stack, line)
+        # Display the stack
+        print(stack.show())
+
+    print("Goodbye!")
+
+if __name__ == "__main__":
+    main()
