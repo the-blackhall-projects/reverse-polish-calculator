@@ -220,14 +220,13 @@ def process_line(stack, line):
 
 os.system('clear')
 
-print("+------------------------------------------+")
-print("|  Internet Reverse Polish Calculator V1.0 |")
-print("+------------------------------------------+")
-print('\nType "quit" or "exit" to quit.\n')
-print('Type "reset" to clear stack.\n')
-print('Type "clear" to clear screen.\n')
-
-
+print('''+------------------------------------------+"
+|  Internet Reverse Polish Calculator V1.0 |")
++------------------------------------------+")
+COMMANDS (to be typed on their own line):
+"quit" or "exit" to quit program.  
+"reset" to empty the stack.
+"clear" to clear screen.''')
 
 stack = Stack()
 print(stack.show())
@@ -239,7 +238,6 @@ while True:
     if line.upper() in {"QUIT", "EXIT"}:
         break
     # Process line
-
     process_line(stack, line)
     
     print(stack.show())
