@@ -75,7 +75,7 @@ class Stack:
             else:
                 ret_val += " " + str(num)
 
-        retVal = ret_val.strip()
+        ret_val = ret_val.strip()
 
         if len(ret_val) == 0:
             ret_val = "(empty)"
@@ -358,10 +358,6 @@ def process_line(stack, line):
 
     return ret_message.strip()
 
-
-
-
-
 def main():
     """
     Main loop of the program.  Set up stack.  Read line from user.
@@ -394,6 +390,7 @@ COMMANDS (to be typed on their own line):
 
         if ret_message != "":
             print(ret_message)
+        
         # Display the stack
         print(stack.show())
 
