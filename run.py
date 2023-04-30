@@ -1,6 +1,7 @@
+""" A Reverse Polish Notation (RPN) calculator """
 
-import os
 import math
+import os
 import random
 
 
