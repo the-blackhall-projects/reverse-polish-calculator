@@ -328,11 +328,13 @@ def process_line(stack, line):
 
     i = 0
 
+    ret_message = ""
+
     tokens = line.split()
     if len(tokens) == 1 and tokens[0] == "CLEAR":
         os.system('clear')
     elif len(tokens) == 1 and tokens[0] == "RESET":
-        print("Stack reset to zero elements.")
+        ret_message = "Stack reset to zero elements."
         stack.reset()
     else:
         try:
@@ -348,14 +350,13 @@ def process_line(stack, line):
                 else:
                     raise NameError(token + " not found.")
         except (ZeroDivisionError, ValueError, OverflowError, ArithmeticError, NameError)  as err:
-            
             if i < len(tokens) - 1:
                 rest_message = "Rest of input line ignored."
             else:
                 rest_message = ""
+            ret_message = str(err) + " " + rest_message
 
-            print(err, rest_message)
-    return
+    return ret_message.strip()
 
 
 
@@ -389,7 +390,10 @@ COMMANDS (to be typed on their own line):
         if line.upper() in {"QUIT", "EXIT"}:
             break
         # Process line
-        process_line(stack, line)
+        ret_message = process_line(stack, line)
+
+        if ret_message != "":
+            print(ret_message)
         # Display the stack
         print(stack.show())
 
