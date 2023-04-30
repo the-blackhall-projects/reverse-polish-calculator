@@ -3,7 +3,6 @@ import os
 import math
 import random
 
-
 class Stack:
     """
     Implement a stack object using a list as the data.
@@ -11,7 +10,7 @@ class Stack:
     __data = []
 
     def __init__(self, init_stack = []):
-         """
+        """
          Constructor.  Create the object.
 
          Parameters
@@ -20,7 +19,7 @@ class Stack:
             Alist supplied to constitute
             initial stack.  Defaults to the empty list
          """
-         self.__data = init_stack
+        self.__data = init_stack
     
     def length(self):
         """
@@ -30,7 +29,6 @@ class Stack:
         -------
         int : the number of items in the stack.
         """
-
         return len(self.__data)
 
     def reset(self):
@@ -47,7 +45,6 @@ class Stack:
         ----------
         item: float
             The item to be pushed onto the stack.
-
         """
         self.__data.append(item)
 
@@ -70,7 +67,6 @@ class Stack:
         Returns
         -------
             string : a printable representation of the stack.
-
         """
         ret_val = ""
         for num in self.__data:
@@ -85,7 +81,6 @@ class Stack:
             ret_val = "(empty)"
 
         return "Stack: " + ret_val
-
 
 def is_num(strng):
     """
@@ -122,7 +117,6 @@ def is_operator(strng):
     Returns
     -------
     boolean : True if string represents a valid operator
-
     """
     return strng in {'+', '-', '*', '/', '^', 'MOD'}
 
@@ -271,7 +265,6 @@ def process_function(stack, token):
     except OverflowError as err:
         stack.push(num)
         raise OverflowError("Number exceeded maximum allowed size.") from err
-    
     return
 
 def process_operator(stack, token):
@@ -306,16 +299,17 @@ def process_operator(stack, token):
         elif token == '^':
             stack.push(num1 ** num2)
         elif token == 'MOD':
+            if num2 == 0:
+                raise ZeroDivisionError('Operator MOD: tried to obtain modulus of division by zero.')
             stack.push(num1 % num2)
     except ZeroDivisionError:
         stack.push(num1)
         stack.push(num2)
         raise
-    except OverflowError:
+    except OverflowError as err:
         stack.push(num1)
         stack.push(num2)
-        raise OverflowError("Number exceeded maximum allowed size.")
-         
+        raise OverflowError("Number exceeded maximum allowed size.") from err
     return
     
 def process_line(stack, line):
@@ -361,7 +355,6 @@ def process_line(stack, line):
                 rest_message = ""
 
             print(err, rest_message)
-    
     return
 
 
