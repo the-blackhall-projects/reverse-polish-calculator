@@ -10,7 +10,6 @@ class Stack:
     """
     __data = []
 
-
     def __init__(self, init_stack = []):
          """
          Constructor.  Create the object.
@@ -22,17 +21,7 @@ class Stack:
             initial stack.  Defaults to the empty list
          """
          self.__data = init_stack
-
-    def getData(self):
-        """
-        Get contents of stack as a list.
-
-        Returns
-        -------
-        list - the list representing the stack.
-        """
-        return self.__data
-
+    
     def length(self):
         """
         Get length of stack.
