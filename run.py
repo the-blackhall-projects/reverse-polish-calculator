@@ -2,7 +2,6 @@
 import os
 import math
 import random
-import copy
 
 class Stack:
 
@@ -226,7 +225,8 @@ print('''+------------------------------------------+"
 COMMANDS (to be typed on their own line):
 "quit" or "exit" to quit program.  
 "reset" to empty the stack.
-"clear" to clear screen.''')
+"clear" to clear screen.
+''')
 
 stack = Stack()
 print(stack.show())
