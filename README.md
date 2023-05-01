@@ -1,38 +1,69 @@
+# Online Reverse Polish Notation (RPN) Calculator
+
 Live site: https://reverse-polish-calculator.herokuapp.com/
 
 Github repository:
 https://github.com/the-blackhall-projects/reverse-polish-calculator
 
+PyDoc Documentation:
+https://the-blackhall-projects.github.io/reverse-polish-calculator/
 
 
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome USER_NAME,
+## What is Reverse Polish Notation?
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+This program implements a Reverse Rolish Notation (RPN) calculator.  Reverse Polish is an alternative to the more common infix notation involving parentheses. Wheras with normal infix notation, the operator is placed between the operands, with RPN the operator comes after the operands.  As such, it is an example of postfix notation.
 
-## Reminders
+So, for example, instead of writing:
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+(2 + 4) * 5 
 
-## Creating the Heroku app
+in normal infix notation, in RPN we would write:
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+2 4 + 5 *
 
-1. `heroku/python`
-2. `heroku/nodejs`
+In this example, 2 and 4 are pushed onto the stack.  The '+' operator
+is invoked replacing the 2 and 4 with the sum 6.  Then a 5 is pushed onto
+the stack and the multiplaction operator '*' is invoked giving the final result of 30.  
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+RPN has a long history and is a variant of Polish Notation (PN) which was invented by the Polish logician, Jan Łukasiewicz to express mathematical logic without parentheses.  While PN puts the operator in front of the operands, RPN puts the operator after and hence is a postfix notation.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+RPN was used in some early digital computers such as Konrad Zuse's Z3, English Electric's KDF9 and the Burroughs B5000.  The early computer language GEORGE used RPN to express arithmetic and ran on English Electric's DEUCE machine.
 
-Connect your GitHub repository and deploy as normal.
+Another more recent programming language to use RPN is FORTH, a stack based language developed in 1970. 
 
-## Constraints
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
 
------
-Happy coding!
+## Using the program
+
+When you start up the program you are presented with the following information:
+
+``` 
++-------------------------------------------+"
+|  Internet Reverse Polish Calculator V 1.0 |"
++-------------------------------------------+"
+
+COMMANDS (to be typed on their own line):
+
+"quit" or "exit" to quit program.
+"reset" to empty the stack.
+"clear" to clear screen.
+
+Stack: (empty)
+RPN > 
+```
+After the main banner we have a list of commands which must be entered alone
+on their own line to work.  The result of these commands should be obvious from the opening text.
+
+Following this we have a display of the data stack.  As we can see, upon starting the program, the stack is empty.
+Finallly, on the next line, we have the "RPN >" prompt after which the user 
+can type expressions in Reverse Polish Notation (RPN).
+
+RPN is a sequences of tokens separated by spaces.  The tokens can be of three
+types:
+
+1. Numbers
+2. Operators
+3. Functions
+
+

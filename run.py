@@ -137,7 +137,7 @@ def is_function(strng):
     boolean : True if string represents a valid function
     """
     return strng in {"SIN", "COS", "TAN", "ABS", "ATN", "COT", "EXP",
-                     "INT", "LOG", "SQR", "SGN", "NEG", "INV"}
+                     "INT", "LOG", "SQR", "SGN", "NEG", "INV", "DUP"}
 
 
 def is_no_arg_function(strng):
@@ -266,6 +266,9 @@ def process_function(stack, token):
             stack.push(-num)
         elif token == "INV":
             stack.push(1/num)
+        elif token == "DUP":
+            stack.push(num)
+            stack.push(num)
     except (ValueError, ZeroDivisionError):
         stack.push(num)
         raise
