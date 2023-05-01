@@ -8,8 +8,6 @@ https://github.com/the-blackhall-projects/reverse-polish-calculator
 PyDoc Documentation:
 https://the-blackhall-projects.github.io/reverse-polish-calculator/
 
-
-
 ## What is Reverse Polish Notation?
 
 This program implements a Reverse Rolish Notation (RPN) calculator.  Reverse Polish is an alternative to the more common infix notation involving parentheses. Wheras with normal infix notation, the operator is placed between the operands, with RPN the operator comes after the operands.  As such, it is an example of postfix notation.
@@ -46,8 +44,8 @@ When you start up the program you are presented with the following information:
 COMMANDS (to be typed on their own line):
 
 "quit" or "exit" to quit program.
-"reset" to empty the stack.
-"clear" to clear screen.
+"clear" to empty the stack.
+"cls" to clear screen.
 
 Stack: (empty)
 RPN > 
@@ -161,7 +159,7 @@ before continuing with the rest of the input.
 Continuing with the previous example:
 
 ```
-Stack: (empty)
+Stack: (empty)pa
 RPN > pi 2 /
 Stack: 1.5707963267948966
 RPN > sin
@@ -169,5 +167,63 @@ Stack: 1
 RPN > 
 ```
 In the example above, $\pi$ is first divided by 2 and the result displayed as 1.5707... when the return key is pressed.  On the next line, sin is entered and the resulting 1 is shown.
+
+Since not everything typed into the input line will be valid, the program tries to catch errors
+as they occur. 
+```
+Stack: (empty)
+RPN > 3 4 eee 1 4 +
+EEE not found. Rest of input line ignored.
+Stack: 3 4
+RPN > 
+```
+In the above example, the token "eee" is not a valid function
+and so produces an error.  Note that not only is the token itself
+rejected but the rest of the line is also ignored.  The reason 
+for this is that a misspelled function can have a profound effect
+on any subsequent results.  Therefore it is better that the error
+itself is first corrected before the user proceeds with the rest
+of the calculation.
+
+For this reason, it is recommended that long expressions be
+entered in small chunks thus minimizing the amount of discarded information due to errors.
+
+## Features
+
+- Stack based data model using a python list encapsulated in a class.
+- Exception handling used to propagate input errors up the call
+heirarchy to the user.
+- Only valid tokens: numbers, functions or operators can be entered.  Error message is displayed if otherwise.
+- Error message also displayed if data is invalid for function or 
+operagor.  E.g. dividing by zero or taking the log of a negative number.
+- Custom error messages where anticipated.  However in unknown cases, the built in Python message may be displayed.  
+- Only highest level performs input and output.  Lower level functions perform atomic, appropriately granular operations minimizing side-effects.
+- Global variables have been avoided.
+- Code in "snake_case" except for class names which are in CamelCase. 
+- Code conforms to PEP8 standards.
+- OOP has been used where appropriate to represent stack class.
+
+
+## Testing.
+- Code was passed through a PEP8 linter.  
+- Specific cases were tested:
+	* Empty input - the program simply reprints the promtp as intended.
+	* Invalid token - the program rejects the tokan and ignores rest of input line, as intended.
+	* Invalid data for function or operator.  Certain functions like SQR, LOG, COT have defined argument ranges.  For example, SQR can't take a negative number.  Various invalid arguments were tried and the program prints a friendly error message, rejects the function and remaining line, as intended.
+	* Division by zero in / or MOD operators.  If this happens, an error is displayed, the operator is rejected and rest of input line ignored, as intended.
+	* Insufficient arguments in stack for operator or function.  If an operator requires two operands and only one is present in the stack, the program rejects the operator and ignores rest of line as intended.
+	* Commands, cls, clear, exit and quit were tested and work as
+	intended.
+
+
+PEP8 Linter:
+
+
+
+
+
+
+
+
 
 
