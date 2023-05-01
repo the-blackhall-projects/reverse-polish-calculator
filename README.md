@@ -144,9 +144,30 @@ evaluated and the result pushed back onto the stack.
 | NEG   | Negate: multiply by -1   |
 | INV   | Invert: 1 / num   |
 
-As an example, consider $\sin\left(\pi/2\right)$.
+As an example, consider $\sin\left(\pi/2\right)$. In the RPN calculator we would write:
 
+```
+Stack: (empty)
+RPN > pi 2 / sin
+Stack: 1
+RPN >
+```
+Here, $\pi$ and 2 are pushed to the the stack.  Then
+the division operator / is invoked and finally the $\sin$ of the result is calculated. 
 
+Input can be continued over several lines.  This is useful if you wish to see intermediate results
+before continuing with the rest of the input.
 
+Continuing with the previous example:
+
+```
+Stack: (empty)
+RPN > pi 2 /
+Stack: 1.5707963267948966
+RPN > sin
+Stack: 1
+RPN > 
+```
+In the example above, $\pi$ is first divided by 2 and the result displayed as 1.5707... when the return key is pressed.  On the next line, sin is entered and the resulting 1 is shown.
 
 
