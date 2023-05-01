@@ -216,6 +216,13 @@ operagor.  E.g. dividing by zero or taking the log of a negative number.
 - Code conforms to PEP8 standards.
 - OOP has been used where appropriate to represent stack class.
 
+## Future features
+
+ - Add a feature to create your own functions and save them for later use.
+ - Add financial functions.
+ - Add statistical functions.
+ - Add facility to use variables.  
+
 ## Design goals:
 
 Build an educative site allowing the user to enter
