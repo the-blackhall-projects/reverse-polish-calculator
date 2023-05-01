@@ -369,6 +369,8 @@ def process_line(stack, line):
             else:
                 rest_message = ""
             ret_message = str(err) + " " + rest_message
+        except KeyboardInterrupt:
+            pass
 
     return ret_message.strip()
 
@@ -396,7 +398,13 @@ COMMANDS (to be typed on their own line):
 
     # Basic loop for the program
     while True:
-        line = input("RPN > ")
+
+        line = ""        
+        try:
+            line = input("RPN > ")
+        except KeyboardInterrupt:
+            print()
+
         if line.upper() in {"QUIT", "EXIT"}:
             break
         # Process line
