@@ -24,4 +24,208 @@
         // Set focus in the terminal
         document.getElementsByClassName("xterm-helper-textarea")[0].focus();
     </script>
+
+<h2 id="using-the-program">Using the program</h2>
+<p>When you start up the program you are presented with the following information:</p>
+<pre><code>+-------------------------------------------+
+|  Internet Reverse Polish Calculator V 1.0 |
++-------------------------------------------+
+
+COMMANDS (to be typed on their own line):
+
+&quot;quit&quot; or &quot;exit&quot; to quit program.
+&quot;clear&quot; to empty the stack.
+&quot;cls&quot; to clear screen.
+
+Stack: (empty)
+RPN &gt; </code></pre>
+<p>After the main banner we have a list of commands which must be entered alone on their own line to work. The result of these commands should be obvious from the opening text.</p>
+<p>Following this we have a display of the data stack. As we can see, upon starting the program, the stack is empty. Finallly, on the next line, we have the “RPN &gt;” prompt after which the user can type expressions in Reverse Polish Notation (RPN).</p>
+<p>RPN is a sequences of tokens separated by spaces. The tokens can be of three types:</p>
+<ol type="1">
+<li>Commands</li>
+<li>Numbers</li>
+<li>Operators</li>
+<li>Functions</li>
+</ol>
+<p><strong>Commands</strong> have already been discussed. They are not part of RPN and therefore must be typed on their own line.</p>
+<p><strong>Numbers</strong> can be positive or negative and can be entered in scientific notation. When a number is encountered in the input line it is added to the stack.</p>
+<pre><code>Stack: (empty)
+RPN &gt; 1 -1.2 3e-3
+Stack: 1 -1.2 0.003
+RPN &gt; </code></pre>
+<p>In the example above, starting from an empty stack, the numbers 1, -1.2 and 3e-3 are entered after the prompt. The program then displays the stack and a new prompt is printed on the following line.</p>
+<p><strong>Operators</strong> consist of the standard arithemtic binary operators. Unlike conventional notation, operators appear after their operands in the command line. When an operator is encountered, two numbers are popped from the stack. The operation is peformed upon them, and the result then pushed to the stack.</p>
+<p>Below is a table of available operators.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>+</td>
+<td>Addition</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>Subtraction</td>
+</tr>
+<tr class="odd">
+<td>*</td>
+<td>Multipliacation</td>
+</tr>
+<tr class="even">
+<td>\</td>
+<td>Division</td>
+</tr>
+<tr class="odd">
+<td>^</td>
+<td>Exponentiation</td>
+</tr>
+<tr class="even">
+<td>MOD</td>
+<td>Modulus</td>
+</tr>
+</tbody>
+</table>
+<p>All of these require at least two numbers on the stack upon which to operate.</p>
+<p>Example:</p>
+<p>To compute 6 × (5 + 4) we would type: 5 4 + 6 *.</p>
+<pre><code>Stack: (empty)
+RPN &gt; 5 4 + 6 *
+Stack: 54
+RPN &gt; </code></pre>
+<p>And we see the answer is 54.</p>
+<p><strong>Functions</strong> come in several types. - Trigonometric - Log and Exponential - Stack manipulation - Other functions</p>
+<p>Most functions take one argument. When a single argument is encountered in the input line, a number is popped off the stack, the function is evaluated and the result pushed back onto the stack.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Trigonometric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SIN</td>
+<td>Sine</td>
+</tr>
+<tr class="even">
+<td>COS</td>
+<td>Cosine</td>
+</tr>
+<tr class="odd">
+<td>TAN</td>
+<td>Tangent</td>
+</tr>
+<tr class="even">
+<td>ATN</td>
+<td>Arctangent</td>
+</tr>
+<tr class="odd">
+<td>COT</td>
+<td>Cotangent</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Log and Exponential</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LOG</td>
+<td>Natural logarithm</td>
+</tr>
+<tr class="even">
+<td>EXP</td>
+<td>Exponent to base e</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Stack manipulation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DUP</td>
+<td>Duplicate top item</td>
+</tr>
+<tr class="even">
+<td>DROP</td>
+<td>Drop top item</td>
+</tr>
+<tr class="odd">
+<td>SWP</td>
+<td>Swap top two items</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Other functions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SQR</td>
+<td>Square root</td>
+</tr>
+<tr class="even">
+<td>ABS</td>
+<td>Absolute value</td>
+</tr>
+<tr class="odd">
+<td>INT</td>
+<td>Integer portion of num</td>
+</tr>
+<tr class="even">
+<td>SGN</td>
+<td>Sign of a number 1, -1 or 0</td>
+</tr>
+<tr class="odd">
+<td>NEG</td>
+<td>Negate: multiply by -1</td>
+</tr>
+<tr class="even">
+<td>INV</td>
+<td>Invert: 1 / num</td>
+</tr>
+</tbody>
+</table>
+<p>As an example, consider <span class="math inline">\(\sin\left(\pi/2\right)\)</span>. In the RPN calculator we would write:</p>
+<pre><code>Stack: (empty)
+RPN &gt; pi 2 / sin
+Stack: 1
+RPN &gt;</code></pre>
+<p>Here, <span class="math inline">\(\pi\)</span> and 2 are pushed to the the stack. Then the division operator / is invoked and finally the <span class="math inline">\(\sin\)</span> of the result is calculated.</p>
+<p>Input can be continued over several lines. This is useful if you wish to see intermediate results before continuing with the rest of the input.</p>
+<p>Continuing with the previous example:</p>
+<pre><code>Stack: (empty)pa
+RPN &gt; pi 2 /
+Stack: 1.5707963267948966
+RPN &gt; sin
+Stack: 1
+RPN &gt; </code></pre>
+<p>In the example above, <span class="math inline">\(\pi\)</span> is first divided by 2 and the result displayed as 1.5707… when the return key is pressed. On the next line, sin is entered and the resulting 1 is shown.</p>
+<p>Since not everything typed into the input line will be valid, the program tries to catch errors as they occur.</p>
+<pre><code>Stack: (empty)
+RPN &gt; 3 4 eee 1 4 +
+EEE not found. Rest of input line ignored.
+Stack: 3 4
+RPN &gt; </code></pre>
+<p>In the above example, the token “eee” is not a valid function and so produces an error. Note that not only is the token itself rejected but the rest of the line is also ignored. The reason for this is that a misspelled function can have a profound effect on any subsequent results. Therefore it is better that the error itself is first corrected before the user proceeds with the rest of the calculation.</p>
+<p>For this reason, it is recommended that long expressions be entered in small chunks thus minimizing the amount of discarded information due to errors.</p>
 </body>
