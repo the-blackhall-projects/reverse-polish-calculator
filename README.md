@@ -62,8 +62,22 @@ can type expressions in Reverse Polish Notation (RPN).
 RPN is a sequences of tokens separated by spaces.  The tokens can be of three
 types:
 
+1. Commands
 1. Numbers
-2. Operators
-3. Functions
+1. Operators
+1. Functions
+
+**Commands** have already been discussed and are not part of RPN. 
+
+**Numbers** can be positive or negative and can be entered in scientific notation.  When a number is encountered in the input line it is added to the stack. 
+```
+Stack: (empty)
+RPN > 1 -1.2 3e-3
+Stack: 1 -1.2 0.003
+RPN > 
+```
+In the example above, starting from an empty stack, the numbers 1, -1.2 and 3e-3 are entered after the prompt.  The program then displays the stack and a new
+prompt is printed on the following line.
+
 
 
