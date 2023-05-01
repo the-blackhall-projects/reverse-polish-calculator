@@ -324,10 +324,11 @@ def process_operator(stack, token):
         raise OverflowError("Number exceeded maximum allowed size.") from err
     return
 
+
 def process_token(stack, token):
     """
     Process the suppied token. Determine which type of token
-    it is and carry out the corresponding operation. 
+    it is and carry out the corresponding operation.
 
     Parameters
     ----------
@@ -347,9 +348,8 @@ def process_token(stack, token):
         process_operator(stack, token)
     else:
         raise NameError(token + " not found.")
-    
-    return
 
+    return
 
 
 def process_line(stack, line):
@@ -417,7 +417,7 @@ COMMANDS (to be typed on their own line):
     # Basic loop for the program
     while True:
 
-        line = ""        
+        line = ""
         try:
             line = input("RPN > ")
         except KeyboardInterrupt:
