@@ -324,6 +324,33 @@ def process_operator(stack, token):
         raise OverflowError("Number exceeded maximum allowed size.") from err
     return
 
+def process_token(stack, token):
+    """
+    Process the suppied token. Determine which type of token
+    it is and carry out the corresponding operation. 
+
+    Parameters
+    ----------
+    stack : object
+    The stack on which to perform operation
+
+    token : string
+    A string representing the operator or function
+    """
+    if is_num(token):
+        stack.push(float(token))
+    elif is_no_arg_function(token):
+        process_no_arg_function(stack, token)
+    elif is_function(token):
+        process_function(stack, token)
+    elif is_operator(token):
+        process_operator(stack, token)
+    else:
+        raise NameError(token + " not found.")
+    
+    return
+
+
 
 def process_line(stack, line):
     """
@@ -352,16 +379,7 @@ def process_line(stack, line):
     else:
         try:
             for i, token in enumerate(tokens):
-                if is_num(token):
-                    stack.push(float(token))
-                elif is_no_arg_function(token):
-                    process_no_arg_function(stack, token)
-                elif is_function(token):
-                    process_function(stack, token)
-                elif is_operator(token):
-                    process_operator(stack, token)
-                else:
-                    raise NameError(token + " not found.")
+                process_token(stack, token)
         except (ZeroDivisionError, ValueError, OverflowError,
                 ArithmeticError, NameError) as err:
             if i < len(tokens) - 1:

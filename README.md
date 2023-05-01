@@ -1,5 +1,7 @@
 # Online Reverse Polish Notation (RPN) Calculator
 
+### A program allowing the user to enter expressions in Reverse Polish form and display the results. 
+
 Live site: https://reverse-polish-calculator.herokuapp.com/
 
 Github repository:
@@ -7,6 +9,8 @@ https://github.com/the-blackhall-projects/reverse-polish-calculator
 
 PyDoc Documentation:
 https://the-blackhall-projects.github.io/reverse-polish-calculator/
+
+![PEP 8 Linter](https://github.com/the-blackhall-projects/reverse-polish-calculator/blob/main/assets/images/Screenshot%20from%202023-05-01%2019-48-25.png?raw=true)
 
 ## What is Reverse Polish Notation?
 
@@ -203,6 +207,13 @@ operagor.  E.g. dividing by zero or taking the log of a negative number.
 - Code conforms to PEP8 standards.
 - OOP has been used where appropriate to represent stack class.
 
+## Design goals:
+
+Build an educative site allowing the user to enter
+Reverse Polish expressions, have the results displayed to them,
+and provide helpful errors in cases of invalid input.
+
+The design goal has been met.
 
 ## Testing.
 - Code was passed through a PEP8 linter.  
@@ -214,11 +225,14 @@ operagor.  E.g. dividing by zero or taking the log of a negative number.
 	* Insufficient arguments in stack for operator or function.  If an operator requires two operands and only one is present in the stack, the program rejects the operator and ignores rest of line as intended.
 	* Commands, cls, clear, exit and quit were tested and work as
 	intended.
-
+	
+No known unfixed bugs remain.
 
 PEP8 Linter:
 
 ![PEP 8 Linter](https://github.com/the-blackhall-projects/reverse-polish-calculator/blob/main/assets/images/Screenshot%20from%202023-05-01%2018-45-59.png?raw=true)
+
+
 
 
 
