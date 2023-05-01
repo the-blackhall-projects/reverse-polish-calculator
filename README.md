@@ -30,7 +30,7 @@ RPN has a long history and is a variant of Polish Notation (PN) which was invent
 
 RPN was used in some early digital computers such as Konrad Zuse's Z3, English Electric's KDF9 and the Burroughs B5000.  The early computer language GEORGE used RPN to express arithmetic and ran on English Electric's DEUCE machine.
 
-Another more recent programming language to use RPN is FORTH, a stack based language developed in 1970. 
+A more recent programming language to use RPN is FORTH, a stack based language developed in 1970. 
 
 
 
@@ -39,9 +39,9 @@ Another more recent programming language to use RPN is FORTH, a stack based lang
 When you start up the program you are presented with the following information:
 
 ``` 
-+-------------------------------------------+"
-|  Internet Reverse Polish Calculator V 1.0 |"
-+-------------------------------------------+"
++-------------------------------------------+
+|  Internet Reverse Polish Calculator V 1.0 |
++-------------------------------------------+
 
 COMMANDS (to be typed on their own line):
 
@@ -67,7 +67,7 @@ types:
 1. Operators
 1. Functions
 
-**Commands** have already been discussed and are not part of RPN. 
+**Commands** have already been discussed.  They are not part of RPN and therefore must be typed on their own line. 
 
 **Numbers** can be positive or negative and can be entered in scientific notation.  When a number is encountered in the input line it is added to the stack. 
 ```
