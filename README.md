@@ -10,11 +10,20 @@ https://github.com/the-blackhall-projects/reverse-polish-calculator
 PyDoc Documentation:
 https://the-blackhall-projects.github.io/reverse-polish-calculator/
 
-![PEP 8 Linter](https://github.com/the-blackhall-projects/reverse-polish-calculator/blob/main/assets/images/Screenshot%20from%202023-05-01%2019-48-25.png?raw=true)
+![Responsive code screenshot](https://github.com/the-blackhall-projects/reverse-polish-calculator/blob/main/assets/images/Screenshot%20from%202023-05-01%2019-48-25.png?raw=true)
+
+## External user's goal
+
+To learn about and experiment with RPN expressions and calculations.
+
+## Site owner's goal
+
+To provide a calculating environment to the user based
+on RPN.  
 
 ## What is Reverse Polish Notation?
 
-This program implements a Reverse Rolish Notation (RPN) calculator.  Reverse Polish is an alternative to the more common infix notation involving parentheses. Wheras with normal infix notation, the operator is placed between the operands, with RPN the operator comes after the operands.  As such, it is an example of postfix notation.
+Reverse Polish is an alternative to the more common infix notation involving parentheses. Wheras with normal infix notation, the operator is placed between the operands, with RPN the operator comes after the operands.  As such, it is an example of postfix notation.
 
 So, for example, instead of writing:
 
@@ -216,6 +225,8 @@ and provide helpful errors in cases of invalid input.
 The design goal has been met.
 
 ## Testing.
+Thourough testing was carried out.
+
 - Code was passed through a PEP8 linter.  
 - Specific cases were tested:
 	* Empty input - the program simply reprints the promtp as intended.
