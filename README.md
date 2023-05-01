@@ -144,7 +144,7 @@ evaluated and the result pushed back onto the stack.
 | NEG   | Negate: multiply by -1   |
 | INV   | Invert: 1 / num   |
 
-As an example, consider $\sin($\pi$ / 2)$
+As an example, consider $\sin\left(\pi/2\right)$.
 
 
 
