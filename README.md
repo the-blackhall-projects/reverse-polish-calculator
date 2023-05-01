@@ -218,7 +218,7 @@ operagor.  E.g. dividing by zero or taking the log of a negative number.
 
 PEP8 Linter:
 
-![PEP 8 Linter](assets/images/Screenshot from 2023-05-01 18-45-59.png)
+![PEP 8 Linter](https://github.com/the-blackhall-projects/reverse-polish-calculator/blob/main/assets/images/Screenshot%20from%202023-05-01%2018-45-59.png?raw=true)
 
 
 
