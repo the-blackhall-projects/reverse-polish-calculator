@@ -220,9 +220,9 @@ operagor.  E.g. dividing by zero or taking the log of a negative number.
 
 Build an educative site allowing the user to enter
 Reverse Polish expressions, have the results displayed to them,
-and provide helpful errors in cases of invalid input.
+and provide helpful messages in cases of invalid input.
 
-The design goal has been met.
+It is felt that design goal has been met.
 
 ## Testing.
 Thourough testing was carried out.
@@ -236,12 +236,55 @@ Thourough testing was carried out.
 	* Insufficient arguments in stack for operator or function.  If an operator requires two operands and only one is present in the stack, the program rejects the operator and ignores rest of line as intended.
 	* Commands, cls, clear, exit and quit were tested and work as
 	intended.
-	
+
+Many bugs were found relating to invalid inputs and their
+reporting back to the user.  These have been fixed.
+
+CTRL-C was found to cause an unscheduled exit of the program.
+This was caught with a KeyboardInterupt exception.
+
+Many changes were made to make the program more useable.  In
+particular, built in error messages were overridden with 
+more user-friendly ones.
+
 No known unfixed bugs remain.
 
 PEP8 Linter:
 
 ![PEP 8 Linter](https://github.com/the-blackhall-projects/reverse-polish-calculator/blob/main/assets/images/Screenshot%20from%202023-05-01%2018-45-59.png?raw=true)
+
+No issues found upon running the PEP8 checker.
+
+## External dependencies
+
+No external libraries used.  Only built in libraries:
+math, os and random were used.  Hence an empty requirements.txt document.
+
+## Data model
+
+The project uses a Stack class which is basically a wrapper
+for a Python list.  The list exists as a private data item
+within the class and public methods are provided to access
+it.  Standard stack methods such as push and pop are
+implemented.
+
+## Deployment
+
+The project was deployed on the Heroku Cloud Application Platform and uses the Code Institute's Terminal app.
+
+Steps:
+
+- In the Heroku dashboard, click on the "New" button and select "Create New App.
+- Supply an App name: reverse-polish-calculator 
+- Select Europe as region.
+- Click Create App.
+- In Deployment Method - select Github
+- Click the Search button and select github reverse-polish-calculator.
+- Go to settings tab and add Python and Nodejs build packs in that order.
+- Go back to the  Deploy tab and click "Enable Automatic Deploys".
+- Click "Deploy Branch"
+- When it has finished building, click on "View" to see the app.
+
 
 
 
