@@ -30,7 +30,7 @@ RPN has a long history and is a variant of Polish Notation (PN) which was invent
 
 RPN was used in some early digital computers such as Konrad Zuse's Z3, English Electric's KDF9 and the Burroughs B5000.  The early computer language GEORGE used RPN to express arithmetic and ran on English Electric's DEUCE machine.
 
-A more recent programming language to use RPN is FORTH, a stack based language developed in 1970. 
+More recently, FORTH, a stack based language developed in 1970, uses RPN for arithmetic and Hewlett-Packard, to this day, allows the use of RPN in its calculators.  
 
 
 
@@ -78,6 +78,75 @@ RPN >
 ```
 In the example above, starting from an empty stack, the numbers 1, -1.2 and 3e-3 are entered after the prompt.  The program then displays the stack and a new
 prompt is printed on the following line.
+
+**Operators** consist of the standard arithemtic binary operators.  Unlike conventional notation, operators appear after their operands in the command line.  When an operator is encountered, two numbers are popped from the stack.  The operation is peformed upon them, and the result then pushed to the stack.
+
+Below is a table of available operators.
+
+| Operator      | Description |
+| ----------- | ----------- |
+| +      | Addition       |
+| -   | Subtraction        |
+| \*   | Multipliacation   |
+|\\   | Division        |
+|^   | Exponentiation     |
+|MOD   | Modulus     |
+
+All of these require at least two numbers on the stack upon which to operate.
+
+Example:
+
+To compute 6 × (5 + 4) we would type: 5 4 + 6 *.
+
+```
+Stack: (empty)
+RPN > 5 4 + 6 *
+Stack: 54
+RPN > 
+```
+And we see the answer is 54.
+
+**Functions** come in several types. 
+- Trigonometric
+- Log and Exponential
+- Stack manipulation
+- Other functions
+
+Most functions take one argument.  When a single argument is encountered
+in the input line, a number is popped off the stack, the function is 
+evaluated and the result pushed back onto the stack.
+
+| Trigonometric      | Description |
+| ----------- | ----------- |
+| SIN      | Sine       |
+| COS   | Cosine        |
+| TAN   | Tangent   |
+| ATN   | Arctangent        |
+| COT   | Cotangent        |
+
+| Log and Exponential      | Description |
+| ----------- | ----------- |
+| LOG      | Natural logarithm       |
+| EXP   | Exponent to base e        |
+
+| Stack manipulation      | Description |
+| ----------- | ----------- |
+| DUP      | Duplicate top item |
+| DROP   | Drop top item       |
+| SWP   | Swap top two items       |
+
+| Other functions      | Description |
+| ----------- | ----------- |
+| SQR   | Square root   |
+| ABS   | Absolute value   |
+| INT      | Integer portion of num |
+| SGN   | Sign of a number 1, -1 or 0 |
+| NEG   | Negate: multiply by -1   |
+| INV   | Invert: 1 / num   |
+
+As an example, consider $\sin($\pi$ / 2)$
+
+
 
 
 

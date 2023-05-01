@@ -153,7 +153,7 @@ def is_no_arg_function(strng):
     -------
     boolean : True if string represents a valid function that takes no argument
     """
-    return strng in {"RND", "POP", "SWP", "PI"}
+    return strng in {"RND", "DROP", "SWP", "PI"}
 
 
 def sign(num):
@@ -200,7 +200,7 @@ def process_no_arg_function(stack, token):
         stack.push(random.random())
     if token == "PI":
         stack.push(math.pi)
-    elif token == "POP":
+    elif token == "DROP":
         if stack.length() < 1:
             raise ArithmeticError(token + " requires at least one item" +
                                   ' in the stack.')
@@ -380,9 +380,9 @@ def main():
     """
     os.system('clear')
 
-    print('''+-------------------------------------------+"
-|  Internet Reverse Polish Calculator V 1.0 |"
-+-------------------------------------------+"
+    print('''+-------------------------------------------+
+|  Internet Reverse Polish Calculator V 1.0 |
++-------------------------------------------+
 
 COMMANDS (to be typed on their own line):
 
