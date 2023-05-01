@@ -218,6 +218,10 @@ operagor.  E.g. dividing by zero or taking the log of a negative number.
 
 PEP8 Linter:
 
+![PEP 8 Linter](assets/images/Screenshot from 2023-05-01 18-45-59.png)
+
+
+
 
 
 
