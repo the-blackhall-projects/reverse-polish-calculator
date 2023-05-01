@@ -344,9 +344,9 @@ def process_line(stack, line):
     ret_message = ""
 
     tokens = line.split()
-    if len(tokens) == 1 and tokens[0] == "CLEAR":
+    if len(tokens) == 1 and tokens[0] == "CLS":
         os.system('clear')
-    elif len(tokens) == 1 and tokens[0] == "RESET":
+    elif len(tokens) == 1 and tokens[0] == "CLEAR":
         ret_message = "Stack reset to zero elements."
         stack.reset()
     else:
@@ -387,8 +387,8 @@ def main():
 COMMANDS (to be typed on their own line):
 
 "quit" or "exit" to quit program.
-"reset" to empty the stack.
-"clear" to clear screen.
+"clear" to empty the stack.
+"cls" to clear screen.
 ''')
 
     stack = Stack()
