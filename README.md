@@ -285,6 +285,12 @@ Steps:
 - Click "Deploy Branch"
 - When it has finished building, click on "View" to see the app.
 
+Credits:
+
+Code institute for Terminal app.
+
+Wikipedia for info on RPN.
+
 
 
 
